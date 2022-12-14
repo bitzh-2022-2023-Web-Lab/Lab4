@@ -1,0 +1,42 @@
+<!--姓名：
+    班级：
+    实验名称：
+    实验步骤：
+    
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>显示列表项的内容</title>
+</head>
+
+<body>
+    <div>
+        <h3>显示列表项的内容</h3>
+    </div>
+    <div>
+        <select name="book" size="5" id="book">
+            <option value="35" onclick="displayItem()">计算机组成原理</option>
+            <option value="38" onclick="displayItem()">数据结构</option>
+            <option value="43" onclick="displayItem()">计算机网络</option>
+            <option value="40" onclick="displayItem()">Java 程序设计</option>
+            <option value="28" onclick="displayItem()">算法分析</option>
+        </select>
+    </div>
+
+    <script>
+        const displayItem = () => {
+            const select = document.querySelector("#book")
+            const index = select.selectedIndex
+            const text = select.options[index].text
+            const value = select.options[index].value
+            alert(`教材名称：${text}\n定价：${value}元`)
+        }
+    </script>
+</body>
+
+</html>
