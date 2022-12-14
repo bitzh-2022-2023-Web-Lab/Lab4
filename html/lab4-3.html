@@ -1,0 +1,94 @@
+<!--姓名：
+    班级：
+    实验名称：
+    实验步骤：
+    
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模拟幸运数字机</title>
+    <style>
+        .totalData {
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h3>模拟幸运数字机</h3>
+    </div>
+    <div>
+        请在1~9中选择一个您的幸运数字：
+        <select name="luckyNumSelect" id="luckyNum">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+        </select>
+        <input type="button" value="确定" onclick="selectLuckyNum()">
+    </div>
+    <div>
+        <div>您选择的幸运数字：</div>
+        <div class="luckyNumDiv">未选择</div>
+    </div>
+    <br>
+    <div>
+        <input type="button" value="开始游戏" onclick="startGame()">
+    </div>
+
+    <script>
+        var luckyNumber
+        var times = 0
+        var win = 0
+
+        const selectLuckyNum = () => {
+            const select = document.querySelector("#luckyNum")
+            const index = select.selectedIndex
+            luckyNumber = select.options[index].value
+
+            const luckyNumDiv = document.querySelector(".luckyNumDiv")
+            luckyNumDiv.innerHTML = luckyNumber
+            console.log(luckyNumber)
+        }
+
+        const startGame = () => {
+            console.log(luckyNumber)
+            if (!luckyNumber) {
+                alert("请先选择幸运数字！")
+                return
+            }
+            times++
+            const num = []
+            const result = ["赢", "输"]
+            let resultIndex = 1
+            for (let i = 0; i < 3; i++) {
+                num.push(Math.floor(Math.random() * 8 + 1))
+            }
+            for (let i = 0; i < 3; i++) {
+                if (num[i] == luckyNumber) {
+                    win++;
+                    resultIndex = 0
+                    break
+                }
+            }
+            const re = confirm(`${num[0]} ${num[1]} ${num[2]}\n${result[resultIndex]}\n您累计玩了${times}次，胜率${Math.floor(win / times * 10000) / 100}%，继续吗？`)
+            if (re) {
+                startGame()
+            }
+        }
+    </script>
+</body>
+
+</html>
