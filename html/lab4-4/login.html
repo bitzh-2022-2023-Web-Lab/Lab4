@@ -1,0 +1,125 @@
+<!--姓名：
+    班级：
+    实验名称：
+    实验步骤：
+    
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+</head>
+
+<body>
+    <div>
+        <h1 style="text-align: center;">登录</h1>
+        <form action="">
+            <div style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
+                <div>
+                    <div>
+                        <div><span style="color: red;">*</span>手机号：<input type="text" name="phone" id="phone"></div>
+                    </div>
+                    <br>
+                    <div>
+                        <div><span style="color: red;">*</span>密码：<input type="text" name="pwd" id="pwd"></div>
+                    </div>
+                    <br>
+                    <div style="font-size: 12px;float: right;">没有账号？<a href="./register.html">注册</a></div>
+                    <br>
+                </div>
+                <div>
+                    <input type="button" value="登录" onclick="checkForm()">
+                    <input type="reset" value="重置">
+                </div>
+            </div>
+        </form>
+    </div>
+    <br><br>
+    <div style="display: flex;justify-content: center;align-items: center;">
+        <div style="border: solid 1px black;padding: 5px;">
+            <h2>规则：</h2>
+            <p>1. 手机号是中国大陆的手机。</p>
+            <p>2. 密码长度为8~16个字符，且必须包含至少一个大写字母，一个小写字母和一个数字。</p>
+        </div>
+    </div>
+
+    <script>
+        const checkPhone = () => {
+            const input = document.querySelector("#phone")
+            const value = input.value
+
+            const pattern = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
+
+            const father = input.parentNode.parentNode
+            const div = document.createElement("div")
+            div.style.fontSize = "12px"
+            div.style.color = "red"
+
+            if (father.children.length != 1) {
+                father.removeChild(father.lastChild)
+            }
+
+            if (value == "") {
+                div.innerText = `请输入您的手机号。`
+                father.append(div)
+                return false
+            } else if (!pattern.test(value)) {
+                div.innerText = `请填写正确的手机号。`
+                father.append(div)
+                return false
+            }
+            return true
+        }
+
+        const checkPwd = () => {
+            const input = document.querySelector("#pwd")
+            const value = input.value
+
+            const pattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[A-Za-z0-9]{8,16}$/
+
+            const father = input.parentNode.parentNode
+            const div = document.createElement("div")
+            div.style.fontSize = "12px"
+            div.style.color = "red"
+
+            if (father.children.length != 1) {
+                father.removeChild(father.lastChild)
+            }
+
+            if (value == "") {
+                div.innerText = `请输入密码`
+                father.append(div)
+                return false
+            } else if (value.length < 8) {
+                div.innerText = `密码长度必须为8~16个字符`
+                father.append(div)
+                return false
+            } else if (value.length > 16) {
+                div.innerText = `密码长度必须为8~16个字符`
+                father.append(div)
+                return false
+            }
+            else if (!pattern.test(value)) {
+                div.innerText = `密码至少包含一个大写字母，一个小写字母，\n一个数字和一个特殊字符。`
+                father.append(div)
+                return false
+            }
+            return true
+        }
+
+        const checkForm = () => {
+            const phone = checkPhone()
+            const pwd = checkPwd()
+
+            if (phone && pwd) {
+                alert("登陆成功")
+            }
+        }
+    </script>
+</body>
+
+</html>
