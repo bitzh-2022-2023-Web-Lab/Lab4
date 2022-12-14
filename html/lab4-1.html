@@ -1,0 +1,56 @@
+<!--姓名：
+    班级：
+    实验名称：
+    实验步骤：
+    
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>找出符合条件的数</title>
+</head>
+
+<body>
+    <div class="main">
+        <h3>找出 1000~9999之间能够被 17 和 13 同时整除的整数的个数及累加和</h3>
+        <div>
+            <div>区间中符合条件的数有(输出格式:10个1行):</div>
+            <div class="number"></div>
+            <div class="total"></div>
+        </div>
+    </div>
+
+    <script>
+        var sum = 0;
+        var num = 0;
+        const div = document.querySelector(".number")
+        var str = ``
+
+        for (let i = 1000; i < 9999; i++) {
+            if (i % 17 == 0 && i % 13 == 0) {
+                str += `${i}`
+                sum += i
+                num++
+                if (num % 10 == 0) {
+                    str += `<br>`
+                } else {
+                    str += ` `
+                }
+            }
+        }
+        div.innerHTML = str
+
+        const total = document.querySelector(".total")
+        const p1 = document.createElement("p")
+        const p2 = document.createElement("p")
+        p1.innerText = `区间中符合条件的数共有 ${num} 个`
+        p2.innerText = `区间中符合条件的数的累加和为 ${sum}`
+        total.append(p1, p2)
+    </script>
+</body>
+
+</html>
